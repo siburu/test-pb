@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package test.pb;
+
+message GlobalA {
+  message NestedA {
+    string s = 1;
+  }
+  NestedA na = 1;
+  GlobalB.NestedB nb = 2;
+}
+
+message GlobalB {
+  message NestedB {
+    string s = 1;
+  }
+  NestedB nb = 1;
+  GlobalA.NestedA na = 2;
+}
