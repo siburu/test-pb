@@ -9,7 +9,7 @@ protogen-cpp:
 .PHONY: bin-cpp
 bin-cpp: cpp/test
 
-cpp/test: cpp/test.o cpp/scalar.pb.o cpp/nest.pb.o
+cpp/test: cpp/test.o cpp/scalar.pb.o cpp/nest.pb.o cpp/enum.pb.o cpp/repeated.pb.o
 	g++ -Wall -o $@ -lprotobuf $^
 
 cpp/%.o: cpp/%.cc

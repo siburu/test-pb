@@ -5,15 +5,19 @@
 
 #include "scalar.pb.h"
 #include "nest.pb.h"
+#include "enum.pb.h"
+#include "repeated.pb.h"
 
 static void test_scalar();
 static void test_nest();
+static void test_repeated();
 
 int main()
 {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
   test_scalar();
   test_nest();
+  test_repeated();
   google::protobuf::ShutdownProtobufLibrary();
   return 0;
 }
@@ -88,6 +92,65 @@ static void test_nest()
   result = gb.SerializeToArray(buf, size);
   assert(result);
   std::cout << "GlobalB: ";
+  print_hex(buf, size);
+  delete[] buf;
+}
+
+static void test_repeated()
+{
+  using namespace test::pb;
+  Repeated r;
+  {
+    Scalar *scalar = r.add_scalars();
+    scalar->set_s32(-10);
+    scalar->set_s("hello");
+    scalar = r.add_scalars();
+    scalar->set_u32(10);
+    scalar->set_s("world");
+  }
+  {
+    r.add_strings("HELLO");
+    r.add_strings("WORLD");
+  }
+  {
+    r.add_bzs("hello");
+    r.add_bzs("world");
+  }
+  {
+    r.add_enums_default(ZERO);
+    r.add_enums_default(ONE);
+    r.add_enums_default(TWO);
+  }
+  {
+    r.add_enums_unpacked(ZERO);
+    r.add_enums_unpacked(ONE);
+    r.add_enums_unpacked(TWO);
+  }
+  {
+    r.add_enums_packed(ZERO);
+    r.add_enums_packed(ONE);
+    r.add_enums_packed(TWO);
+  }
+  {
+    r.add_u64s_default(0);
+    r.add_u64s_default(1);
+    r.add_u64s_default(150);
+  }
+  {
+    r.add_u64s_unpacked(0);
+    r.add_u64s_unpacked(1);
+    r.add_u64s_unpacked(150);
+  }
+  {
+    r.add_u64s_packed(0);
+    r.add_u64s_packed(1);
+    r.add_u64s_packed(150);
+  }
+  size_t size = r.ByteSizeLong();
+  unsigned char *buf = new unsigned char[size];
+  bool result = r.SerializeToArray(buf, size);
+  assert(result);
+  std::cout << "Repeated: ";
   print_hex(buf, size);
   delete[] buf;
 }
