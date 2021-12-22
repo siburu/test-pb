@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package test.pb;
+
+import "scalar.proto";
+import "enum.proto";
+
+message Repeated {
+  repeated Scalar scalars           = 1;
+  repeated string strings           = 2;
+  repeated bytes bzs                = 3;
+  repeated Enum enums_default       = 4;
+  repeated Enum enums_unpacked      = 5 [packed=false];
+  repeated Enum enums_packed        = 6 [packed=true];
+  repeated uint64 u64s_default      = 7;
+  repeated uint64 u64s_unpacked     = 8 [packed=false];
+  repeated uint64 u64s_packed       = 9 [packed=true];
+}
