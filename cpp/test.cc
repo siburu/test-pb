@@ -146,6 +146,36 @@ static void test_repeated()
     r.add_u64s_packed(1);
     r.add_u64s_packed(150);
   }
+  {
+    r.add_f32s_default(0);
+    r.add_f32s_default(1);
+    r.add_f32s_default(150);
+  }
+  {
+    r.add_f32s_unpacked(0);
+    r.add_f32s_unpacked(1);
+    r.add_f32s_unpacked(150);
+  }
+  {
+    r.add_f32s_packed(0);
+    r.add_f32s_packed(1);
+    r.add_f32s_packed(150);
+  }
+  {
+    r.add_sf64s_default(0);
+    r.add_sf64s_default(-1);
+    r.add_sf64s_default(-150);
+  }
+  {
+    r.add_sf64s_unpacked(0);
+    r.add_sf64s_unpacked(-1);
+    r.add_sf64s_unpacked(-150);
+  }
+  {
+    r.add_sf64s_packed(0);
+    r.add_sf64s_packed(-1);
+    r.add_sf64s_packed(-150);
+  }
   size_t size = r.ByteSizeLong();
   unsigned char *buf = new unsigned char[size];
   bool result = r.SerializeToArray(buf, size);

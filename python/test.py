@@ -60,6 +60,24 @@ def make_repeated() -> Repeated:
   r.u64s_packed.append(0)
   r.u64s_packed.append(1)
   r.u64s_packed.append(150)
+  r.f32s_default.append(0)
+  r.f32s_default.append(1)
+  r.f32s_default.append(150)
+  r.f32s_unpacked.append(0)
+  r.f32s_unpacked.append(1)
+  r.f32s_unpacked.append(150)
+  r.f32s_packed.append(0)
+  r.f32s_packed.append(1)
+  r.f32s_packed.append(150)
+  r.sf64s_default.append(0)
+  r.sf64s_default.append(-1)
+  r.sf64s_default.append(-150)
+  r.sf64s_unpacked.append(0)
+  r.sf64s_unpacked.append(-1)
+  r.sf64s_unpacked.append(-150)
+  r.sf64s_packed.append(0)
+  r.sf64s_packed.append(-1)
+  r.sf64s_packed.append(-150)
   return r
 
 if __name__ == '__main__':
@@ -69,5 +87,5 @@ if __name__ == '__main__':
   print('GlobalA:', make_global_a().SerializeToString().hex())
   print('GlobalB:', make_global_b().SerializeToString().hex())
 
-  # Repeated: 0a093813720568656c6c6f 0a09280a7205776f726c64 120548454c4c4f 1205574f524c44 1a0568656c6c6f 1a05776f726c64 2203000102 2800 2801 2802 3203000102 3a0400019601 4000 4001 409601 4a0400019601
+  # Repeated: 0a093813720568656c6c6f 0a09280a7205776f726c64 120548454c4c4f 1205574f524c44 1a0568656c6c6f 1a05776f726c64 2203000102 2800 2801 2802 3203000102 3a0400019601 4000 4001 409601 4a0400019601 520c000000000100000096000000 5d00000000 5d01000000 5d96000000 620c000000000100000096000000 6a180000000000000000ffffffffffffffff6affffffffffffff 710000000000000000 71ffffffffffffffff 716affffffffffffff 7a180000000000000000ffffffffffffffff6affffffffffffff
   print('Repeated:', make_repeated().SerializeToString().hex())

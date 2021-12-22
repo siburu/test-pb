@@ -15,4 +15,10 @@ message Repeated {
   repeated uint64 u64s_default      = 7;
   repeated uint64 u64s_unpacked     = 8 [packed=false];
   repeated uint64 u64s_packed       = 9 [packed=true];
+  repeated fixed32 f32s_default     = 10;
+  repeated fixed32 f32s_unpacked    = 11 [packed=false];
+  repeated fixed32 f32s_packed      = 12 [packed=true];
+  repeated sfixed64 sf64s_default   = 13;
+  repeated sfixed64 sf64s_unpacked  = 14 [packed=false];
+  repeated sfixed64 sf64s_packed    = 15 [packed=true];
 }
